@@ -1,23 +1,28 @@
 import sys
 from collections import deque
+import heapq
 
 
 def input():
     return sys.stdin.readline().rstrip()
 
-
-def func(current):
-    # exit
+def solution(k):
     if len(result) == M:
-        print(*result, sep=' ')
-    for i in range(current + 1, N + 1):
-        result.append(i)
-        func(i)
-        result.pop()
-
+        return
+    else:
+        if k in result:
+            pass
+        else:
+            result.append(k)
+            if len(result) == M:
+                print(*result)
+            for i in range(k, N + 1):
+                solution(i)
+            result.remove(k)
+    return 
 
 N, M = map(int, input().split())
-
-if __name__ == '__main__':
-    result = []
-    func(0)
+    
+result = []
+for i in range(1, N + 1):
+    solution(i)
